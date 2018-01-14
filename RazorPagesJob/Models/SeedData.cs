@@ -9,11 +9,13 @@ namespace RazorPagesJob.Models
 {
     public static class SeedData
     {
+        public static bool Loading;
         public static async Task InitializeAsync(IServiceProvider serviceProvider)
         {
             using (var context = new JobContext(
                 serviceProvider.GetRequiredService<DbContextOptions<JobContext>>()))
             {
+                Loading = true;
 
                 // Setup the configuration to support document loading
                 var config = Configuration.Default.WithDefaultLoader();
@@ -21,16 +23,19 @@ namespace RazorPagesJob.Models
                 // Asynchronously get the document in a new context using the configuration
                 var document = await BrowsingContext.New(config).OpenAsync(address);
                 if (document == null) {
+                    Loading = false;
                     return;
                 }
                 var cells = document.All.Where(m => m.LocalName == "a" && m.ClassName == "bloko-link HH-LinkModifier");
                 if (cells == null)
                 {
+                    Loading = false;
                     return;
                 }
                 var titles = cells.Select(m => m.GetAttribute("href"));
                 if (titles == null)
                 {
+                    Loading = false;
                     return;
                 }
                 foreach (var item in titles)
@@ -57,6 +62,7 @@ namespace RazorPagesJob.Models
 
                 context.Job.RemoveRange(context.Job);
                 context.SaveChanges();
+                Loading = false;
             }
         }
     }

@@ -9,11 +9,12 @@
 </p>
 
 <form>
-   <p>Заголовок: <input type="text" name="SearchString"></p>
-   <p>Тип занятости: 
-      <select asp-for="JobWType" asp-items="Model.WTypes">
-         <option value="">Все</option>
-      </select>
+    <p>Заголовок: <input type="text" name="SearchString"></p>
+    <p>
+        Тип занятости:
+        <select asp-for="JobWType" asp-items="Model.WTypes">
+            <option value="">Все</option>
+        </select>
     </p>
     <p></p>
     <input type="submit" value="Обновить" />
@@ -80,3 +81,17 @@
         }
     </tbody>
 </table>
+@{
+    if (Model.Job.Count == 0 && RazorPagesJob.Models.SeedData.Loading)
+    {
+        @*Выполняется только тогда, когда список вакансий пуст и производится его первая загрузка.*@
+        <p>Список вакансий загружается. Пожалуйста подождите.</p>
+        <script>
+            function fresh() {
+                location.reload();
+            }
+            setInterval("fresh()", 6000);
+        </script>
+    }
+}
+
