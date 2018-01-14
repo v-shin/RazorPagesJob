@@ -1,0 +1,82 @@
+﻿@page
+@model RazorPagesJob.Pages.Jobs.IndexModel
+@{
+    ViewData["Title"] = "Список";
+}
+<h2>Список вакансий</h2>
+<p>
+    @*<a asp-page="Create">Создать</a>*@
+</p>
+
+<form>
+   <p>Заголовок: <input type="text" name="SearchString"></p>
+   <p>Тип занятости: 
+      <select asp-for="JobWType" asp-items="Model.WTypes">
+         <option value="">Все</option>
+      </select>
+    </p>
+    <p></p>
+    <input type="submit" value="Обновить" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Firma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Person)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].Type)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Job[0].Description)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Job)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Description)*@
+                </td>
+                <td>
+                    @*<a asp-page="./Edit" asp-route-id="@item.ID">Редактировать</a>*@
+                    <a asp-page="./Details" asp-route-id="@item.Link">Подробности</a>
+                    @*<a asp-page="./Delete" asp-route-id="@item.ID">Удалить</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

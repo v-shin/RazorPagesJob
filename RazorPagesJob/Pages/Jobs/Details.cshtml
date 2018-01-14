@@ -1,0 +1,61 @@
+﻿@page
+@model RazorPagesJob.Pages.Jobs.DetailsModel
+
+@{
+    ViewData["Title"] = "Детализация";
+}
+
+<h2>Детализация</h2>
+
+<div>
+    <h4>Вакансия</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Salary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Firma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Firma)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Person)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Person)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Job.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-page="./Edit" asp-route-id="@Model.Job.ID">Редактировать</a> |*@
+    <a asp-page="./Index">Вернуться к списку</a>
+</div>
